@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Regal Construction &amp; Real Estate · From land to keys</title>
+    <meta name="description" content="Engineer-led construction and real estate in Shivabasav Nagar, Belagavi. From land to keys." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600&display=swap"
+    />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <style>
+      :root {
+        --x-ink: #141414;
+        --x-gold: #c9a24a;
+        --x-gold-deep: #8a6a22;
+        --x-paper: #f7f4ee;
+        --x-serif: "Cormorant Garamond", Georgia, serif;
+        --x-sans: "Manrope", system-ui, sans-serif;
+        --x-pad: clamp(20px, 5vw, 56px);
+        color-scheme: light;
+      }
+      html { background: var(--x-ink); }
+      body {
+        background: var(--x-paper);
+        color: var(--x-ink);
+        font: 400 16px/1.6 var(--x-sans);
+      }
+      :where(.x-site) a { text-decoration: none; color: inherit; }
+      .x-eyebrow {
+        font: 500 12px/1.2 var(--x-sans);
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+
+      /* nav */
+      .x-nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px var(--x-pad);
+        color: var(--x-paper);
+        background: var(--x-ink);
+        transition: background 0.3s ease;
+      }
+      .x-nav.is-solid { background: rgba(20, 20, 20, 0.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+      .x-mark { display: flex; flex-direction: column; justify-content: center; min-height: 44px; }
+      .x-mark b { font: 600 20px/1 var(--x-sans); letter-spacing: 0.36em; color: var(--x-gold); }
+      .x-mark span { font: 400 12px/1 var(--x-sans); letter-spacing: 0.12em; text-transform: uppercase; color: rgba(247, 244, 238, 0.72); margin-top: 7px; }
+      .x-call {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 44px; padding: 0 22px;
+        border: 1px solid var(--x-gold);
+        border-radius: 999px;
+        color: var(--x-gold);
+        font: 500 13px/1 var(--x-sans);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        transition: background 0.25s ease, color 0.25s ease;
+      }
+      .x-call:hover { background: var(--x-gold); color: var(--x-ink); }
+
+      /* opening */
+      .x-open { position: relative; min-height: 100svh; display: grid; align-items: end; overflow: hidden; background: var(--x-ink); }
+      .x-open img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .x-open::after {
+        content: ""; position: absolute; inset: 0;
+        background: linear-gradient(180deg, rgba(20, 20, 20, 0.5) 0%, rgba(20, 20, 20, 0.12) 38%, rgba(20, 20, 20, 0.86) 100%);
+      }
+      .x-open__copy { position: relative; z-index: 2; padding: 0 var(--x-pad) clamp(84px, 14vh, 140px); color: var(--x-paper); }
+      .x-open__copy h1 {
+        font: 500 clamp(46px, 11vw, 132px)/0.98 var(--x-serif);
+        letter-spacing: -0.02em;
+        margin: 0 0 20px;
+        max-width: 14ch;
+      }
+      .x-open__copy .x-eyebrow { color: var(--x-gold); }
+      .x-rule { width: 56px; height: 1px; background: var(--x-gold); margin-bottom: 26px; }
+      .x-cue { position: absolute; z-index: 3; left: 50%; bottom: 26px; transform: translateX(-50%); display: grid; justify-items: center; gap: 10px; }
+      .x-cue span { font: 500 12px/1 var(--x-sans); letter-spacing: 0.24em; text-transform: uppercase; color: rgba(247, 244, 238, 0.85); }
+      .x-cue i { display: block; width: 1px; height: 54px; background: rgba(247, 244, 238, 0.25); position: relative; overflow: hidden; }
+      .x-cue i::after { content: ""; position: absolute; left: 0; top: -54px; width: 1px; height: 54px; background: var(--x-gold); animation: x-drop 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+      @keyframes x-drop { 0% { transform: translateY(0); } 70%, 100% { transform: translateY(108px); } }
+
+      /* chapters */
+      .x-story { position: relative; background: var(--x-ink); color: var(--x-paper); }
+      .x-progress { position: fixed; left: 26px; top: 50%; transform: translateY(-50%); z-index: 40; width: 1px; height: 180px; background: rgba(201, 162, 74, 0.25); display: none; opacity: 0; transition: opacity 0.4s ease; }
+      .x-progress.is-on { opacity: 1; }
+      .x-progress i { display: block; width: 1px; height: 0; background: var(--x-gold); transition: height 0.15s linear; }
+      .x-ch { position: relative; min-height: 100svh; display: grid; }
+      .x-ch__media { position: relative; overflow: hidden; background: #0d0d0d; }
+      .x-ch__media img { width: 100%; height: 100%; object-fit: cover; }
+      .x-ch__copy { position: relative; z-index: 2; display: grid; align-content: end; gap: 14px; padding: var(--x-pad); }
+      .x-num {
+        font: 600 clamp(72px, 16vw, 190px)/0.82 var(--x-serif);
+        letter-spacing: -0.03em;
+        color: transparent;
+        -webkit-text-stroke: 1px var(--x-gold);
+        margin: 0;
+      }
+      .x-ch h2 { font: 500 clamp(28px, 5.2vw, 62px)/1.06 var(--x-serif); letter-spacing: -0.015em; max-width: 16ch; }
+      .x-ch__label { color: var(--x-gold); }
+
+      /* layout A: full bleed */
+      .x-ch--bleed .x-ch__media { position: absolute; inset: 0; }
+      .x-ch--bleed .x-ch__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20, 20, 20, 0.15), rgba(20, 20, 20, 0.88)); }
+      .x-ch--bleed .x-ch__copy { padding-bottom: clamp(56px, 10vh, 110px); }
+
+      /* layout B: split */
+      .x-ch--split { grid-template-columns: 1.05fr 1fr; align-items: stretch; }
+      .x-ch--split .x-ch__copy { align-content: center; padding: clamp(40px, 7vw, 96px); }
+      .x-ch--split .x-ch__media img { height: 100svh; }
+
+      /* layout C: offset */
+      .x-ch--offset { grid-template-columns: 1fr 1fr; align-items: center; padding: clamp(48px, 8vh, 110px) var(--x-pad); gap: clamp(24px, 5vw, 72px); }
+      .x-ch--offset .x-ch__copy { padding: 0; align-content: center; order: 2; }
+      .x-ch--offset .x-ch__media { order: 1; border: 1px solid rgba(201, 162, 74, 0.3); }
+      .x-ch--offset .x-ch__media img { height: 74svh; }
+
+      /* layout D: finale, image framed in paper */
+      .x-ch--finale { background: var(--x-paper); color: var(--x-ink); align-content: center; padding: clamp(56px, 9vh, 120px) var(--x-pad); gap: clamp(26px, 4vw, 48px); }
+      .x-ch--finale .x-ch__media img { width: 100%; height: clamp(300px, 56svh, 560px); }
+      .x-ch--finale .x-ch__copy { padding: 0; align-content: start; justify-items: start; }
+      .x-ch--finale .x-num { -webkit-text-stroke-color: var(--x-gold-deep); }
+      .x-ch--finale .x-ch__label { color: var(--x-gold-deep); }
+
+      /* reveal */
+      .x-rise { opacity: 0; transform: translateY(26px); transition: opacity 0.9s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1)), transform 0.9s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1)); }
+      .x-rise.is-in { opacity: 1; transform: none; }
+      .x-rise:nth-child(2) { transition-delay: 0.08s; }
+      .x-rise:nth-child(3) { transition-delay: 0.16s; }
+
+      /* mosaic */
+      .x-build { background: var(--x-paper); padding: clamp(64px, 10vh, 130px) var(--x-pad) clamp(40px, 7vh, 90px); }
+      .x-build__head { display: flex; align-items: baseline; gap: 18px; margin-bottom: clamp(24px, 4vh, 44px); }
+      .x-build__head .x-eyebrow { color: var(--x-gold-deep); }
+      .x-build__head h2 { font: 500 clamp(30px, 5vw, 56px)/1.05 var(--x-serif); letter-spacing: -0.015em; }
+      .x-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .x-tile { position: relative; overflow: hidden; display: grid; align-items: end; min-height: 260px; background: var(--x-ink); }
+      .x-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1); }
+      .x-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20, 20, 20, 0) 40%, rgba(20, 20, 20, 0.78)); transition: background 0.4s ease; }
+      .x-tile:hover img, .x-tile:focus-within img { transform: scale(1.05); }
+      .x-tile:hover::after { background: linear-gradient(180deg, rgba(20, 20, 20, 0.1) 20%, rgba(20, 20, 20, 0.86)); }
+      .x-tile b { position: relative; z-index: 2; padding: 20px; font: 500 clamp(20px, 2.4vw, 30px)/1.1 var(--x-serif); color: var(--x-paper); }
+      .x-tile--wide { grid-column: span 2; min-height: 330px; }
+      .x-tile--full { grid-column: 1 / -1; min-height: 200px; }
+      .x-tile--type { background: #1b1b1b; align-content: end; }
+      .x-tile--type::after { display: none; }
+      .x-tile--type b { color: var(--x-paper); }
+      .x-tile--type::before { content: ""; position: absolute; left: 20px; top: 20px; width: 28px; height: 1px; background: var(--x-gold); }
+      .x-tile--gold { background: var(--x-gold); }
+      .x-tile--gold::after { display: none; }
+      .x-tile--gold b { color: var(--x-ink); }
+      .x-tile--gold::before { content: ""; position: absolute; left: 20px; top: 20px; width: 28px; height: 1px; background: var(--x-ink); }
+      .x-tile--gold b small { display: block; font: 400 12px/1 var(--x-sans); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 10px; }
+
+      /* engineer */
+      .x-eng { background: var(--x-paper); padding: clamp(64px, 11vh, 150px) var(--x-pad); display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(24px, 5vw, 70px); align-items: start; border-top: 1px solid rgba(20, 20, 20, 0.1); }
+      .x-eng .x-eyebrow { color: var(--x-gold-deep); }
+      .x-eng h2 { font: 500 clamp(32px, 5.4vw, 66px)/1.03 var(--x-serif); letter-spacing: -0.02em; max-width: 14ch; }
+      .x-eng p.x-role { margin-top: 16px; font: 500 12px/1 var(--x-sans); letter-spacing: 0.2em; text-transform: uppercase; color: var(--x-gold-deep); }
+      .x-eng p.x-line { margin-top: 26px; font: 500 clamp(17px, 2vw, 22px)/1.4 var(--x-sans); }
+
+      /* closing */
+      .x-close { background: var(--x-ink); color: var(--x-paper); padding: clamp(72px, 13vh, 170px) var(--x-pad); display: grid; justify-items: start; gap: 30px; }
+      .x-close h2 { font: 500 clamp(44px, 10vw, 128px)/0.98 var(--x-serif); letter-spacing: -0.025em; }
+      .x-acts { display: flex; flex-wrap: wrap; gap: 12px; }
+      .x-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px; border-radius: 999px; font: 500 14px/1 var(--x-sans); letter-spacing: 0.08em; background: var(--x-gold); color: var(--x-ink); transition: filter 0.25s ease; }
+      .x-btn:hover { filter: brightness(1.08); }
+      .x-btn--ghost { background: transparent; color: var(--x-paper); border: 1px solid rgba(247, 244, 238, 0.35); }
+      .x-btn--ghost:hover { border-color: var(--x-gold); color: var(--x-gold); filter: none; }
+      .x-meta { font: 400 13px/1.9 var(--x-sans); color: rgba(247, 244, 238, 0.62); max-width: 62ch; }
+      .x-meta a { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; justify-content: center; text-decoration: underline; text-decoration-color: rgba(201, 162, 74, 0.6); text-underline-offset: 4px; color: rgba(247, 244, 238, 0.9); }
+      .x-meta a:hover { color: var(--x-gold); }
+
+      .x-foot { background: var(--x-ink); color: rgba(247, 244, 238, 0.7); padding: 0 var(--x-pad) 32px; font: 400 12px/1.6 var(--x-sans); letter-spacing: 0.1em; text-transform: uppercase; }
+
+      /* whatsapp */
+      .x-wa { position: fixed; right: 18px; bottom: 18px; z-index: 70; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: var(--x-ink); color: var(--x-gold); border: 1px solid rgba(201, 162, 74, 0.55); box-shadow: 0 10px 30px rgba(20, 20, 20, 0.3); transition: background 0.25s ease, color 0.25s ease; }
+      .x-wa:hover { background: var(--x-gold); color: var(--x-ink); }
+      .x-wa svg { width: 26px; height: 26px; fill: currentColor; }
+
+      @media (min-width: 1024px) { .x-progress { display: block; } }
+
+      @media (max-width: 860px) {
+        .x-ch, .x-ch--split, .x-ch--offset, .x-ch--finale { grid-template-columns: 1fr; }
+        .x-ch--split, .x-ch--offset { min-height: 86svh; padding: 0; gap: 0; }
+        .x-ch--split .x-ch__media, .x-ch--offset .x-ch__media { position: absolute; inset: 0; border: 0; }
+        .x-ch--split .x-ch__media img, .x-ch--offset .x-ch__media img { height: 100%; }
+        .x-ch--split .x-ch__media::after, .x-ch--offset .x-ch__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20, 20, 20, 0.2), rgba(20, 20, 20, 0.88)); }
+        .x-ch--split .x-ch__copy, .x-ch--offset .x-ch__copy { align-content: end; padding: var(--x-pad); order: 0; }
+        .x-ch--offset .x-ch__media { order: 0; }
+        .x-ch--finale { min-height: 0; }
+        .x-mosaic { grid-template-columns: 1fr 1fr; }
+        .x-tile { min-height: 200px; }
+        .x-tile--wide { grid-column: span 2; min-height: 240px; }
+        .x-eng { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 520px) {
+        .x-mosaic { grid-template-columns: 1fr; }
+        .x-tile--wide { grid-column: span 1; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .x-rise { opacity: 1; transform: none; transition: none; }
+        .x-cue i::after { animation: none; top: 0; height: 18px; }
+        .x-tile img { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="x-site" id="top">
+      <header class="x-nav" id="nav">
+        <a class="x-mark" href="#top" aria-label="Regal Construction and Real Estate, top"><b>REGAL</b><span>Construction &amp; Real Estate</span></a>
+        <a class="x-call" href="tel:+918088098970">Call</a>
+      </header>
+
+      <main>
+        <section class="x-open" aria-label="We build what lasts">
+          <img src="images/regal-hero.jpg" alt="A Regal building at golden hour" />
+          <div class="x-open__copy">
+            <div class="x-rule"></div>
+            <h1>We build what lasts.</h1>
+            <p class="x-eyebrow">Shivabasav Nagar, Belagavi</p>
+          </div>
+          <div class="x-cue" aria-hidden="true"><span>From land to keys</span><i></i></div>
+        </section>
+
+        <div class="x-story" id="story">
+          <div class="x-progress" id="progress" aria-hidden="true"><i></i></div>
+
+          <section class="x-ch x-ch--bleed" aria-label="Chapter one, the land">
+            <div class="x-ch__media"><img src="images/regal-land.jpg" alt="An empty red-soil plot marked with survey pegs" loading="lazy" /></div>
+            <div class="x-ch__copy">
+              <p class="x-num x-rise">01</p>
+              <p class="x-eyebrow x-ch__label x-rise">The land</p>
+              <h2 class="x-rise">It starts with the right plot.</h2>
+            </div>
+          </section>
+
+          <section class="x-ch x-ch--split" aria-label="Chapter two, the plan">
+            <div class="x-ch__media"><img src="images/regal-plan.jpg" alt="An engineer's hands drawing blueprints" loading="lazy" /></div>
+            <div class="x-ch__copy">
+              <p class="x-num x-rise">02</p>
+              <p class="x-eyebrow x-ch__label x-rise">The plan</p>
+              <h2 class="x-rise">Every line drawn by an engineer.</h2>
+            </div>
+          </section>
+
+          <section class="x-ch x-ch--offset" aria-label="Chapter three, the build">
+            <div class="x-ch__media"><img src="images/regal-build.jpg" alt="An RCC frame and rebar under construction" loading="lazy" /></div>
+            <div class="x-ch__copy">
+              <p class="x-num x-rise">03</p>
+              <p class="x-eyebrow x-ch__label x-rise">The build</p>
+              <h2 class="x-rise">Strong frames. Honest materials.</h2>
+            </div>
+          </section>
+
+          <section class="x-ch x-ch--finale" aria-label="Chapter four, the keys">
+            <div class="x-ch__copy">
+              <p class="x-num x-rise">04</p>
+              <p class="x-eyebrow x-ch__label x-rise">The keys</p>
+              <h2 class="x-rise">And then, it's home.</h2>
+            </div>
+            <div class="x-ch__media x-rise"><img src="images/regal-home.jpg" alt="A finished family home at dusk with its lights on" loading="lazy" /></div>
+          </section>
+        </div>
+
+        <section class="x-build" aria-label="What we build">
+          <div class="x-build__head">
+            <h2>What we build.</h2>
+          </div>
+          <div class="x-mosaic">
+            <div class="x-tile x-tile--wide"><img src="images/regal-home.jpg" alt="A finished family home at dusk" loading="lazy" /><b>Residential</b></div>
+            <div class="x-tile"><img src="images/regal-commercial.jpg" alt="A shops and offices complex" loading="lazy" /><b>Commercial</b></div>
+            <div class="x-tile"><img src="images/regal-industrial.jpg" alt="A steel warehouse shed" loading="lazy" /><b>Industrial</b></div>
+            <div class="x-tile x-tile--type"><b>Institutional</b></div>
+            <div class="x-tile x-tile--type"><b>Agricultural</b></div>
+            <a class="x-tile x-tile--gold x-tile--full" href="https://wa.me/918088098970" target="_blank" rel="noopener"><b>Plots &amp; Land<small>Buy / Sell</small></b></a>
+          </div>
+        </section>
+
+        <section class="x-eng" aria-label="The engineer">
+          <p class="x-eyebrow">The engineer</p>
+          <div>
+            <h2>Er. Md. Rahil M. Sholapurkar</h2>
+            <p class="x-role">B.E. Civil · Founder</p>
+            <p class="x-line">One engineer. Start to handover.</p>
+          </div>
+        </section>
+
+        <section class="x-close" id="contact" aria-label="Contact">
+          <h2>Let's build yours.</h2>
+          <div class="x-acts">
+            <a class="x-btn" href="tel:+918088098970">Call +91 80880 98970</a>
+            <a class="x-btn x-btn--ghost" href="https://wa.me/918088098970" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+          <p class="x-meta">
+            Plot No. 116, Shop No. 2, Shivabasav Nagar, Belagavi – 590010 ·
+            <a href="mailto:regalconstructionbgm@gmail.com">regalconstructionbgm@gmail.com</a> ·
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Regal%20Construction%20Shivabasav%20Nagar%20Belagavi%20590010" target="_blank" rel="noopener">Map</a>
+          </p>
+        </section>
+      </main>
+
+      <footer class="x-foot">© 2026 Regal Construction &amp; Real Estate.</footer>
+
+      <a class="x-wa" href="https://wa.me/918088098970" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z" /></svg>
+      </a>
+    </div>
+    <script src="js/main.js"></script>
+    <script>
+      (function () {
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var rise = [].slice.call(document.querySelectorAll(".x-rise"));
+        if (reduce || !("IntersectionObserver" in window)) {
+          rise.forEach(function (el) { el.classList.add("is-in"); });
+        } else {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } });
+          }, { threshold: 0.25, rootMargin: "0px 0px -8% 0px" });
+          rise.forEach(function (el) { io.observe(el); });
+        }
+
+        var nav = document.getElementById("nav");
+        var story = document.getElementById("story");
+        var fill = document.querySelector("#progress i");
+        var ticking = false;
+        function sync() {
+          nav.classList.toggle("is-solid", window.scrollY > 40);
+          if (story && fill) {
+            var r = story.getBoundingClientRect();
+            var p = (0 - r.top) / Math.max(1, r.height - window.innerHeight);
+            fill.style.height = Math.max(0, Math.min(1, p)) * 100 + "%";
+            fill.parentNode.classList.toggle("is-on", r.top < window.innerHeight * 0.5 && r.bottom > window.innerHeight * 0.5);
+          }
+        }
+        window.addEventListener("scroll", function () {
+          if (ticking) return;
+          ticking = true;
+          window.requestAnimationFrame(function () { sync(); ticking = false; });
+        }, { passive: true });
+        window.addEventListener("resize", sync, { passive: true });
+        sync();
+      })();
+    </script>
+  </body>
+</html>
